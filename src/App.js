@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import JobBox from './components/jobBox';
-import { Button, Grid } from '@mui/material';
+import { Button, Grid, colors } from '@mui/material';
 import scheduleTasks from './Scripts/scheduleTaks';
 import jobs from './test';
 
@@ -9,8 +9,8 @@ function App() {
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
   const [Sjob, setSJob] = useState(jobs);
-  const [scheduledTasks,setScheduledTaks] = useState([]);
-  const [isScheduled, setIsScheduled] = useState(false)
+  const [scheduledTasks, setScheduledTaks] = useState([]);
+
 
   const addJobs = () => {
     let arr = Sjob;
@@ -43,15 +43,11 @@ function App() {
 
   }
 
-  const handleScheduleTaks = (task) =>{
-    
+  const handleScheduleTaks = (task) => {
     const result = scheduleTasks(task);
     setScheduledTaks(result)
-    setIsScheduled(true)
-   
 
-  } 
-
+  }
   const handleName = (event) => {
     setName(event.target.value);
   }
@@ -64,6 +60,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1 style={{textAlign: "center"}}> Greed Bakery Scheduler</h1>
       <div>
         <h3>Nome da tarefa:</h3>
         <input type='text' value={name} onChange={handleName} ></input>
@@ -77,47 +74,33 @@ function App() {
         <input type='time' value={end} onChange={handleEnd} ></input>
       </div>
       <div style={{ marginTop: "12px" }}>
-        <Button  sx={{
-          marginTop:"12px", 
-         backgroundColor:"aliceblue", 
-         marginRight:"12px"}}
+        <Button sx={{
+          marginTop: "12px",
+          backgroundColor: "blue",
+          marginRight: "12px",
+          color: "white"
 
-        onClick={(() => {
-
-          addJobs()
-
-        })}>
+        }}
+          onClick={(() => {
+            addJobs()
+          })}>
           Adicionar tarefa
         </Button>
-
-
-
-       
       </div>
-
-      <Button 
-      sx={{marginTop:'12px', backgroundColor: "red", color:"black"}}
-      onClick={()=>{
-        setSJob([])
-      }}
-      >Limpar tarefas</Button>
-
-      <Grid item container alignContent={'normal'} marginY={-35} marginX={45}>
-
-        <Grid item sm={6} marginTop={6}>
-          <h2>Tarefas:</h2>
-          {Sjob.map((item) => <JobBox job={item} />)}
-          <Button
-         sx={{marginTop:"12px", 
-         backgroundColor:"aliceblue", 
-         marginRight:"12px"}} 
-         color='primary'
-         onClick={(()=>{
-           if(Sjob.length == 0){  
+      <Button
+        sx={{
+          marginTop: "12px",
+          backgroundColor: "green",
+          color:"black",
+          marginRight: "12px"
+        }}
+        color='primary'
+        onClick={(() => {
+          if (Sjob.length == 0) {
             alert("Adicione pelo menos uma tarefa")
-           }else{ 
+          } else {
             const arr = []
-            Sjob.map((item)=>{
+            Sjob.map((item) => {
               arr.push(
                 {
                   name: item.name,
@@ -126,33 +109,32 @@ function App() {
                 }
               )
             })
-            
-          
             handleScheduleTaks(arr);
-          
           }
-         
-         })}
-         >
-          Agendar tarefas
-         </Button> 
-         
+        })}
+      >
+        Agendar tarefas
+      </Button>
+      <Grid item marginTop={1}>
+        <Button
+          sx={{ backgroundColor: "red", color: "black" }}
+          onClick={() => {
+            setSJob([])
+          }}
+        >Limpar tarefas
+        </Button>
+      </Grid>
+      <Grid item container alignContent={'normal'} marginY={-55} marginX={45}>
+        <Grid item sm={6} marginTop={6}>
+          <h2>Tarefas:</h2>
+          {Sjob.map((item) => <JobBox job={item} />)}
         </Grid>
-        {isScheduled ? <>
-     
-     <Grid item marginTop={6} sm={6} >
-       <h2>Tarefas Agendadas:</h2>
-       {scheduledTasks.map((item) => <JobBox job={item} />)}
-       </Grid>
-   </> : <></>}
-        
-
-        
+          <Grid item marginTop={6} sm={6} >
+            <h2>Tarefas Agendadas:</h2>
+            {scheduledTasks.map((item) => <JobBox job={item} />)}
+          </Grid>
       </Grid >
-
-      
     </div>
-
   );
 }
 
