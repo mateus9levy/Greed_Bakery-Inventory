@@ -1,4 +1,3 @@
-import { StarRate } from "@mui/icons-material";
 import { Box, Grid } from "@mui/material"
 
 
@@ -12,20 +11,20 @@ return (
     <>
     <Box sx={{
     width:"220px",
-    height: "120px",
+    height: "140px",
     backgroundColor: 'darkcyan',
     borderRadius: "15px"
     }}>
         <Grid item sx={{marginTop:"12px", marginLeft:"12px"}}>
-            <h3>
+            <h4>
                 {`Nome: ${name}`}
-            </h3>
-            <h3>
+            </h4>
+            <h4>
                 {`Inicio: ${start}`}
-            </h3>
-            <h3>
+            </h4>
+            <h4>
                 {`Fim: ${end}`}
-            </h3>
+            </h4>
         </Grid>
     </Box>
     </>
