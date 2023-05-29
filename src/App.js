@@ -4,10 +4,11 @@ import { Button, Grid } from '@mui/material';
 import scheduleTasks from './Scripts/scheduleTaks';
 
 function App() {
-  const [name, setName] = useState("")
-  const [start, setStart] = useState("")
-  const [end, setEnd] = useState("")
-  const [Sjob, setSJob] = useState([])
+  const [name, setName] = useState("");
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+  const [Sjob, setSJob] = useState([]);
+  const [scheduledTasks,setScheduledTaks] = useState([]);
 
   const addJobs = () => {
     let arr = Sjob;
@@ -30,7 +31,7 @@ function App() {
       setName("");
       setStart("");
       arr.push(job);
-      setSJob(arr)
+      setSJob(arr);
 
     } else {
       alert(`insira corretamente as entradas`)
@@ -39,7 +40,9 @@ function App() {
 
   }
 
-
+  const handleScheduleTaks = (task) =>{
+    setScheduledTaks(task)
+  } 
 
   const handleName = (event) => {
     setName(event.target.value);
@@ -66,19 +69,34 @@ function App() {
         <input type='time' value={end} onChange={handleEnd} ></input>
       </div>
       <div style={{ marginTop: "12px" }}>
-        <button onClick={(() => {
+        <Button  sx={{
+          marginTop:"12px", 
+         backgroundColor:"aliceblue", 
+         marginRight:"12px"}}
+
+        onClick={(() => {
 
           addJobs()
 
         })}>
           Adicionar tarefa
-        </button>
+        </Button>
+
+
+
+       
       </div>
 
+      <Button 
+      sx={{marginTop:'12px', backgroundColor: "red", color:"black"}}
+      onClick={()=>{
+        setSJob([])
+      }}
+      >Limpar tarefas</Button>
 
       <Grid item alignContent={'center'} marginY={-35} marginX={45}>
         <Grid item sm={6} marginTop={6}>
-          <h1>Tarefas:</h1>
+          <h2>Tarefas:</h2>
           {Sjob.map((item) => <JobBox job={item} />)}
 
         </Grid>
@@ -89,15 +107,23 @@ function App() {
          marginRight:"12px"}} 
          color='primary'
          onClick={(()=>{
-           const result = scheduleTasks(Sjob)
-           console.log(result)
+           if(Sjob.length == 0){  
+            alert("Adicione pelo menos uma tarefa")
+           }else{
+            const result = scheduleTasks(Sjob);
+            handleScheduleTaks(result);
+          }
+         
          })}
          >Agendar tarefas
          </Button> 
 
       </Grid >
-      <Grid item alignContent={'center'} marginY={-35} marginX={45}>
-
+     
+      <Grid item alignContent={'center'} marginY={-41.3} marginX={110}>
+          
+          <h2>Tarefas Agendadas:</h2>
+          {scheduledTasks.map((item) => <JobBox job={item} />)}
       </Grid>
     </div>
 
