@@ -38,8 +38,7 @@ npm start
 
 ## Uso 
 
-Preencha os campos da tarefa, clique em adiconar tarefa. Adicione quantas terefas quiser. Depois clique em Agendar Tarefas para organiza-las de forma eficiente. 
-Caso queira limpar as tarefas clique em limpar tarefas
+Preencha os campos da tarefa abaixo e clique em "Adicionar Tarefa" para adicionar quantas tarefas desejar. Em seguida, clique em "Agendar Tarefas" para organizar as tarefas de forma eficiente. Se desejar limpar todas as tarefas, clique em "Limpar Tarefas".
 
 ## Video 
 
