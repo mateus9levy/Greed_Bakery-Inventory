@@ -7,7 +7,7 @@ const JobBox = (job) => {
 const name = job.job.name;
 const start =  job.job.start;
 const end = job.job.end;
-console.log(name    ,start)
+
 return (
     <>
     <Box sx={{
@@ -16,7 +16,7 @@ return (
     backgroundColor: 'darkcyan',
     borderRadius: "15px"
     }}>
-        <Grid item sx={{marginTop: "30px", marginLeft:"12px"}}>
+        <Grid item sx={{marginTop:"12px", marginLeft:"12px"}}>
             <h3>
                 {`Nome: ${name}`}
             </h3>

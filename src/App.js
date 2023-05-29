@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import JobBox from './components/jobBox';
-import { Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
+import scheduleTasks from './Scripts/scheduleTaks';
+
 function App() {
   const [name, setName] = useState("")
   const [start, setStart] = useState("")
@@ -74,14 +76,29 @@ function App() {
       </div>
 
 
-      <Grid item sm={6} alignContent={'center'} marginY={-35} marginX={60}>
-        <Grid item marginTop={6}>
+      <Grid item alignContent={'center'} marginY={-35} marginX={45}>
+        <Grid item sm={6} marginTop={6}>
+          <h1>Tarefas:</h1>
           {Sjob.map((item) => <JobBox job={item} />)}
 
         </Grid>
 
-      </Grid >
+        <Button
+         sx={{marginTop:"12px", 
+         backgroundColor:"aliceblue", 
+         marginRight:"12px"}} 
+         color='primary'
+         onClick={(()=>{
+           const result = scheduleTasks(Sjob)
+           console.log(result)
+         })}
+         >Agendar tarefas
+         </Button> 
 
+      </Grid >
+      <Grid item alignContent={'center'} marginY={-35} marginX={45}>
+
+      </Grid>
     </div>
 
   );
