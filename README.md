@@ -42,6 +42,8 @@ Preencha os campos da tarefa abaixo e clique em "Adicionar Tarefa" para adiciona
 
 ## Video 
 
+https://github.com/mateus9levy/Greed_Bakery-Scheduler/assets/70410544/90aeaf1e-ff6d-4911-b561-455fb75f853d
+
 
 
 
